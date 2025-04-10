@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        IMAGE = "pradhisha/java-microservices:${env.BRANCH_NAME}"
+        IMAGE = "pradhisha/java-microservices:${env.BRANCH_NAME}"        
+        SONARQUBE_ENV = 'SonarQube'
     }
 
     tools {
@@ -24,7 +25,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv("${SONARQUBE_ENV}") {
                     sh 'mvn sonar:sonar'
                 }
             }
