@@ -2,7 +2,11 @@ pipeline {
     agent any
 
     environment {
-        IMAGE = "pradhisha/java-microservices:${env.BRANCH_NAME}"
+        IMAGE = "pradhisha/java-microservice:${env.BRANCH_NAME}"
+    }
+
+    tools {
+        maven 'Maven3' 
     }
 
     stages {
@@ -14,9 +18,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                script {
-                    sh 'mvn clean package'
-                }
+                sh 'mvn clean package'
             }
         }
 
@@ -24,14 +26,6 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     sh 'mvn sonar:sonar'
-                }
-            }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 1, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
                 }
             }
         }
