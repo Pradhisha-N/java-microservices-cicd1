@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE = "pradhisha/java-microservice:${env.BRANCH_NAME}"
+        IMAGE = "pradhisha/java-microservices:${env.BRANCH_NAME}"
     }
 
     tools {
