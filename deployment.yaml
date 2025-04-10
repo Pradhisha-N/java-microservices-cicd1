@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-microservices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-microservices
+  template:
+    metadata:
+      labels:
+        app: java-microservices
+    spec:
+      containers:
+      - name: java-microservices
+        image: pradhisha/java-microservices:latest
+        ports:
+        - containerPort: 8080
