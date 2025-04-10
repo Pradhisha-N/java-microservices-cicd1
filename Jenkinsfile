@@ -35,7 +35,8 @@ pipeline {
             }
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'target/java-microservice-1.0-SNAPSHOT.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target/java-microservice-1.0-SNAPSHOT.jar'
+
             }
         }
         
