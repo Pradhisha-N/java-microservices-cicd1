@@ -25,12 +25,14 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    sh 'mvn sonar:sonar'
+                withSonarQubeEnv('My SonarQube Server') {
+                    withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
+                        sh "mvn sonar:sonar -Dsonar.login=${SONAR_TOKEN}"
+                        }
+                    }
                 }
             }
-        }
-
+        
         stage('Test') {
             steps {
                 echo "Skipping tests for now"
