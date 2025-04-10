@@ -35,7 +35,7 @@ pipeline {
             }
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'java-microservice-1.0.jar', fingerprint: true
+                archiveArtifacts artifacts: 'java-microservices-1.0.jar', fingerprint: true
             }
         }
         
